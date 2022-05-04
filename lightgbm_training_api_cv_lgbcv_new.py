@@ -21,7 +21,7 @@ cv = KFold(n_splits=5, shuffle=True, random_state=42)
 # データをDatasetクラスに格納
 dcv = lgb.Dataset(X, label=y)  # クロスバリデーション用
 # 使用するパラメータ
-param = {'objective': 'regression',  # 最小化させるべき損失関数
+params = {'objective': 'regression',  # 最小化させるべき損失関数
          'metric': 'rmse',  # 学習時に使用する評価指標(early_stoppingの評価指標にも同じ値が使用される)
          'random_state': 42,  # 乱数シード
          'boosting_type': 'gbdt',  # boosting_type
@@ -29,7 +29,7 @@ param = {'objective': 'regression',  # 最小化させるべき損失関数
          }
 verbose_eval = 0  # この数字を1にすると学習時のスコア推移がコマンドライン表示される
 # early_stoppingを指定してLightGBMをクロスバリデーション
-cv_result = lgb.cv(param, dcv,
+cv_result = lgb.cv(params, dcv,
                 num_boost_round=10000,  # 最大学習サイクル数。early_stopping使用時は大きな値を入力
                 folds=cv,
                 callbacks=[lgb.early_stopping(stopping_rounds=10, 

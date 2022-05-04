@@ -20,14 +20,14 @@ cv = KFold(n_splits=5, shuffle=True, random_state=42)
 
 ###### ここからがLightGBMの実装 ######
 # 使用するパラメータ
-param = {'objective': 'regression',  # 最小化させるべき損失関数
+params = {'objective': 'regression',  # 最小化させるべき損失関数
         'random_state': 42,  # 乱数シード
         'boosting_type': 'gbdt',  # boosting_type
         'n_estimators': 10000  # 最大学習サイクル数。early_stopping使用時は大きな値を入力
         }
 verbose_eval = 0  # この数字を1にすると学習時のスコア推移がコマンドライン表示される
 # early_stoppingを指定してLightGBM学習
-lgbr = lgb.LGBMRegressor(**param)
+lgbr = lgb.LGBMRegressor(**params)
 # クロスバリデーション内部で`fit()`メソッドに渡すパラメータ
 fit_params = {'eval_metric':'rmse',
               'eval_set':[(X, y)],

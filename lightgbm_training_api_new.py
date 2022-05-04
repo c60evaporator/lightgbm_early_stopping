@@ -23,7 +23,7 @@ X_train, X_valid, y_train, y_valid = train_test_split(X_train_raw, y_train_raw, 
 dtrain = lgb.Dataset(X_train, label=y_train)  # 学習用
 dvalid = lgb.Dataset(X_valid, label=y_valid)  # early_stopping用
 # 使用するパラメータ
-param = {'objective': 'regression',  # 最小化させるべき損失関数
+params = {'objective': 'regression',  # 最小化させるべき損失関数
          'metric': 'rmse',  # 学習時に使用する評価指標(early_stoppingの評価指標にも同じ値が使用される)
          'random_state': 42,  # 乱数シード
          'boosting_type': 'gbdt',  # boosting_type
@@ -31,7 +31,7 @@ param = {'objective': 'regression',  # 最小化させるべき損失関数
          }
 verbose_eval = 0  # この数字を1にすると学習時のスコア推移がコマンドライン表示される
 # early_stoppingを指定してLightGBM学習
-gbm = lgb.train(param, dtrain,
+gbm = lgb.train(params, dtrain,
                 valid_sets=[dvalid],  # early_stoppingの評価用データ
                 num_boost_round=10000,  # 最大学習サイクル数。early_stopping使用時は大きな値を入力
                 callbacks=[lgb.early_stopping(stopping_rounds=10, 
