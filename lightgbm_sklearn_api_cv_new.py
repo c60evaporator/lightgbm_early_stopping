@@ -1,11 +1,10 @@
-# %% Scikit-Learn API + 新指定方法(コールバック関数early_stopping) + cross_val_score_eval_setメソッドでクロスバリデーション
+# %% Scikit-Learn API + 新指定方法(コールバック関数early_stopping) + スクラッチ実装のクロスバリデーション
 import pandas as pd
 import numpy as np
 from sklearn.datasets import fetch_california_housing
 from sklearn.metrics import mean_squared_error
 import lightgbm as lgb
 from sklearn.model_selection import KFold
-from seaborn_analyzer import cross_val_score_eval_set
 # データセット読込(カリフォルニア住宅価格)
 TARGET_VARIABLE = 'price'  # 目的変数名
 USE_EXPLANATORY = ['MedInc', 'AveOccup', 'Latitude', 'HouseAge']  # 説明変数名

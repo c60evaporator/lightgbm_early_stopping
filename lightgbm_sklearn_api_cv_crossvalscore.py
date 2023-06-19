@@ -2,7 +2,6 @@
 import pandas as pd
 import numpy as np
 from sklearn.datasets import fetch_california_housing
-from sklearn.metrics import mean_squared_error
 import lightgbm as lgb
 from sklearn.model_selection import KFold
 from seaborn_analyzer import cross_val_score_eval_set
