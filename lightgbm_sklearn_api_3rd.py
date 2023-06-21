@@ -21,12 +21,13 @@ X_train, X_valid, y_train, y_valid = train_test_split(X_train_raw, y_train_raw, 
 ###### ここからがLightGBMの実装 ######
 # 使用するパラメータ
 params = {'objective': 'regression',  # 最小化させるべき損失関数
-         'random_state': 42,  # 乱数シード
-         'boosting_type': 'gbdt',  # boosting_type
-         'n_estimators': 10000,  # 最大学習サイクル数。early_stopping使用時は大きな値を入力
-         'early_stopping_round': 10,  # ここでearly_stoppingを指定
-         'metric': 'rmse'  # 学習時に使用する評価指標(early_stoppingの評価指標にも同じ値が使用される)
-         }
+          'metric': 'rmse',  # 学習時に使用する評価指標(early_stoppingの評価指標にも同じ値が使用される)
+          'random_state': 42,  # 乱数シード
+          'boosting_type': 'gbdt',  # boosting_type
+          'n_estimators': 10000,  # 最大学習サイクル数。early_stopping使用時は大きな値を入力
+          'verbose': -1,  # これを指定しないと`No further splits with positive gain, best gain: -inf`というWarningが表示される
+          'early_stopping_round': 10  # ここでearly_stoppingを指定
+          }
 verbose_eval = 0  # この数字を1にすると学習時のスコア推移がコマンドライン表示される
 # early_stoppingを指定してLightGBM学習
 lgbr = lgb.LGBMRegressor(**params)
