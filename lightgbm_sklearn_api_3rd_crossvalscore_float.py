@@ -35,7 +35,7 @@ fit_params = {'eval_set':[(X, y)]
               }
 # クロスバリデーション実行
 scores = cross_val_score_eval_set(
-        validation_fraction='cv',  # 'test'と指定するとテストデータを'eval_set'に渡せる
+        validation_fraction=0.3,  # floatで指定した割合で学習データから'eval_set'を分割する（同時に学習データからeval_setの分が除外される）
         estimator=lgbr,  # 学習器
         X=X, y=y,  # クロスバリデーション分割前のデータを渡す
         scoring='neg_root_mean_squared_error',  # RMSE（の逆数）を指定
